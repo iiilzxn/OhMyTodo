@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "OhMyTodo",
+  "version": "0.2.2",
+  "identifier": "com.ohmytodo.desktop",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "create": false,
+        "title": "待办 · OhMyTodo",
+        "width": 1180,
+        "height": 800,
+        "minWidth": 880,
+        "minHeight": 640,
+        "center": true,
+        "decorations": false,
+        "visible": false,
+        "backgroundColor": "#fafbfe"
+      },
+      {
+        "label": "widget",
+        "create": false,
+        "title": "待办 · 桌面悬浮",
+        "url": "index.html?view=widget",
+        "width": 380,
+        "height": 550,
+        "minWidth": 340,
+        "minHeight": 66,
+        "decorations": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "visible": false,
+        "resizable": true,
+        "backgroundColor": "#fafbfe"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: http://asset.localhost data:; connect-src ipc: http://ipc.localhost http://127.0.0.1:1420 ws://127.0.0.1:1420; font-src 'self' data:; object-src 'none'; base-uri 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/icon.ico"],
+    "shortDescription": "个人待办、独立日历与发版计划",
+    "resources": { "../THIRD_PARTY_NOTICES.md": "THIRD_PARTY_NOTICES.md" },
+    "category": "Productivity",
+    "windows": {
+      "nsis": {
+        "languages": ["SimpChinese", "English"],
+        "displayLanguageSelector": false,
+        "installMode": "currentUser"
+      }
+    }
+  }
+}
